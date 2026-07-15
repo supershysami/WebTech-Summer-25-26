@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+    <h1>My Portfolio</h1>
+    <button onclick="changeTheme()">Change Theme</button>
+    </header>
+    <br>
+    <nav>
+        <button onclick="showSec('about')">About</button><br><br>
+        <button onclick="showSec('projects')">Projects</button><br><br>
+        <button onclick="showSec('content')">content</button><br><br>
+    </nav>
+    <br>
+    <form onsubmit="return validateForm()">
+        <label>Name: </label>
+        <input type="text" id="name" ><br><br>
+        <label>Email: </label>
+        <input type="text" id="email" ><br><br>
+        <label>Message: </label>
+        <textarea id="message"></textarea><br><br>
+       <button type="submit">Submit</button>
+
+    </form>
+    <br>
+    <p id="error">Error display </p>
+    <p id="result">Success Message</p>
+    <h2 id="time">Live Time</h2>
+    <script>
+        function validateForm()
+{
+    var name=document.getElementById("name").value;
+    var email=document.getElementById("email").value;
+    var message=document.getElementById("message").value;
+
+    document.getElementById("error").innerHTML="";
+    document.getElementById("result").innerHTML="";
+
+     if(name=="")
+    {
+        document.getElementById("error").innerHTML="Name cannot be empty";
+        return false;
+    }
+    if(email.indexOf("@")==-1 || email.indexOf(".")==-1)
+    {
+        document.getElementById("error").innerHTML="Invalid Email";
+        return false;
+    }
+    if(message.length<10)
+    {
+        document.getElementById("error").innerHTML="Message must be at least 10 characters";
+        return false;
+    }
+    document.getElementById("result").innerHTML=
+    "<h3>Registration Complete</h3>"+
+    "Name : "+name+"<br>"+
+    "Email : "+email+"<br>"+
+    "Message : "+message;
+    return false;
+}
+var dark = false;
+
+function changeTheme() {
+    if (dark == false) {
+        document.body.style.backgroundColor="black";
+        document.body.style.color="white";
+        dark=true;
+    } else {
+        document.body.style.backgroundColor="white";
+        document.body.style.color="black";
+        dark=false;
+    }
+}
+
+let hour=new Date().getHours();
+if (hour>=5 && hour<12){
+    document.getElementById("time").innerHTML="Good Morning";
+}
+else if (hour>=12 && hour<17){
+    document.getElementById("time").innerHTML="Good Afternoon";
+}
+else{
+    document.getElementById("time").innerHTML="good Evening";
+}
+
+
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Form Validation</title>
+</head>
+
+<body>
+
+<center>
+<h2>Registration Form</h2>
+</center>
+
+<form onsubmit="return validateForm()">
+
+<label>Name:</label>
+<input type="text" id="name">
+
+<label>Email:</label>
+<input type="text" id="email">
+
+<label>Message:</label>
+<textarea id="message"></textarea>
+
+<label>Age:</label>
+<input type="text" id="age">
+
+<label>Phone:</label>
+<input type="text" id="phone">
+
+<label>ID:</label>
+<input type="text" id="id">
+
+<button type="submit">Submit</button>
+
+</form>
+
+<br>
+
+<p id="error"></p>
+
+<p id="result"></p>
+
+<script>
+
+function validateForm()
+{
+    var name=document.getElementById("name").value;
+    var email=document.getElementById("email").value;
+    var message=document.getElementById("message").value;
+    var age=document.getElementById("age").value;
+    var phone=document.getElementById("phone").value;
+    var id=document.getElementById("id").value;
+
+    document.getElementById("error").innerHTML="";
+    document.getElementById("result").innerHTML="";
+
+    // 1. Name Validation
+    if(name=="")
+    {
+        document.getElementById("error").innerHTML="Name cannot be empty";
+        return false;
+    }
+
+    // 2. Email Validation
+    if(email.indexOf("@")==-1 || email.indexOf(".")==-1)
+    {
+        document.getElementById("error").innerHTML="Invalid Email";
+        return false;
+    }
+
+    // 3. Message Validation
+    if(message.length<10)
+    {
+        document.getElementById("error").innerHTML="Message must be at least 10 characters";
+        return false;
+    }
+
+    // 4. Age Validation
+    if(parseInt(age)>=25)
+    {
+        document.getElementById("error").innerHTML="Age must be less than 25";
+        return false;
+    }
+
+    // 5. Phone Validation
+    if(phone.length!=11 || isNaN(phone))
+    {
+        document.getElementById("error").innerHTML="Phone number must be 11 digits";
+        return false;
+    }
+
+    // 6. ID Validation
+    if(id.length!=5 || isNaN(id))
+    {
+        document.getElementById("error").innerHTML="ID must be 5 digits";
+        return false;
+    }
+
+    // Success Message
+    document.getElementById("result").innerHTML=
+    "<h3>Registration Complete</h3>"+
+    "Name : "+name+"<br>"+
+    "Email : "+email+"<br>"+
+    "Message : "+message+"<br>"+
+    "Age : "+age+"<br>"+
+    "Phone : "+phone+"<br>"+
+    "ID : "+id;
+
+    return false;
+}
+
+</script>
+
+</body>
+
+</html>
